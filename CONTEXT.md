@@ -43,20 +43,24 @@ Brand Positioning: **Profesional + Sedikit Warmth** — Ramah untuk UMKM, tapi t
 
 ### Main Entities
 
+#### User
+- id, name, email, role (`owner` | `admin` | `developer` | `sales` | `support`)
+
 #### Customer
-- Nama / Perusahaan
-- Kontak (WA / Email)
-- Status
-- Catatan internal
+- id, company_name, contact_person, whatsapp, email, status (`active` | `inactive` | `lead`), notes
 
 #### Project
-- Terikat ke 1 Customer
-- Jenis layanan (dari Service)
-- Status pipeline (Inquiry → Proposal → On Progress → Delivered → Maintenance)
-- Catatan & timeline
+- id, customer_id, service_id, title, status (`inquiry` | `proposal_sent` | `negotiation` | `in_progress` | `delivered` | `maintenance`), start_date, expected_end_date, notes
 
 #### Service
-- Dikelola sepenuhnya via CMS (nama, deskripsi, harga dasar, dll)
+- id, name, slug, short_description, full_description, base_price, is_active, order
+
+## CMS Approach (MVP)
+
+**Block-based CMS** (bukan section statis)
+- Setiap halaman public bisa terdiri dari beberapa blok yang bisa diedit via Admin
+- Contoh blok: Hero, Services Grid, Process Steps, Testimonials, About, Contact Form
+- Blok bersifat reusable dan bisa diatur urutannya
 
 ## Public Site Structure (MVP)
 
@@ -68,18 +72,28 @@ Brand Positioning: **Profesional + Sedikit Warmth** — Ramah untuk UMKM, tapi t
 6. Tentang Kami
 7. Kontak / Mulai Project
 
+## Admin Dashboard Structure (MVP)
+
+**Sidebar:**
+- Dashboard (Overview)
+- Customers
+- Projects
+- Services (CMS)
+- Content / CMS (Block-based page builder)
+- Settings (Profile & Team Members)
+
 ## Design Direction
 
 Mix antara **profesional** dan **sedikit warmth**:
 - Clean, modern, mudah dibaca
-- Warna hangat (terinspirasi "Ketan" — golden/earth tone) dikombinasikan dengan profesional blue/gray
+- Warna hangat (golden/earth tone) dikombinasikan dengan profesional blue/gray
 - Typography yang ramah tapi tajam
 - Fokus pada kepercayaan dan kemudahan bagi UMKM
 
 ## Next Decisions Needed
 
-- Detail data model & fields
-- Struktur halaman Admin Dashboard
-- Authentication & Authorization flow
-- CMS implementation approach di Next.js + InsForge
-- Folder structure & component architecture
+- Detail implementasi Block-based CMS
+- Folder structure & component architecture (Next.js)
+- InsForge schema & table design
+- Authentication & role-based authorization flow
+- Form & validation strategy
