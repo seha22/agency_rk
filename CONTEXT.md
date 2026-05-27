@@ -55,12 +55,18 @@ Brand Positioning: **Profesional + Sedikit Warmth** — Ramah untuk UMKM, tapi t
 #### Service
 - id, name, slug, short_description, full_description, base_price, is_active, order
 
+#### Page (CMS)
+- id, slug, title, meta_description, is_published
+
+#### Block (CMS)
+- id, page_id, block_type, data (JSON), order, is_active
+
 ## CMS Approach (MVP)
 
-**Block-based CMS** (bukan section statis)
+**Block-based CMS**
 - Setiap halaman public bisa terdiri dari beberapa blok yang bisa diedit via Admin
-- Contoh blok: Hero, Services Grid, Process Steps, Testimonials, About, Contact Form
 - Blok bersifat reusable dan bisa diatur urutannya
+- Blok yang didukung di MVP: hero, services_grid, process_steps, testimonials, portfolio_preview, about_short, cta_banner, contact_form
 
 ## Public Site Structure (MVP)
 
@@ -90,10 +96,35 @@ Mix antara **profesional** dan **sedikit warmth**:
 - Typography yang ramah tapi tajam
 - Fokus pada kepercayaan dan kemudahan bagi UMKM
 
+## Folder Structure
+
+```
+app/
+├── (public)/
+│   ├── layout.tsx
+│   ├── page.tsx
+│   ├── layanan/
+│   ├── tentang-kami/
+│   └── kontak/
+├── (admin)/
+│   ├── layout.tsx
+│   ├── dashboard/
+│   ├── customers/
+│   ├── projects/
+│   ├── services/
+│   ├── content/
+│   └── settings/
+├── components/
+│   ├── ui/
+│   ├── blocks/
+│   └── admin/
+├── lib/
+└── types/
+```
+
 ## Next Decisions Needed
 
-- Detail implementasi Block-based CMS
-- Folder structure & component architecture (Next.js)
-- InsForge schema & table design
-- Authentication & role-based authorization flow
-- Form & validation strategy
+- Schema design di InsForge (tables & relations)
+- Authentication & role-based authorization implementation
+- Form handling & validation strategy (React Hook Form + Zod)
+- Mulai scaffolding project
